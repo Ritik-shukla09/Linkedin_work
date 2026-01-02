@@ -1,0 +1,36 @@
+<div class="comment" data-id="{{ comment.id }}">
+
+  <!-- COMMENT TEXT -->
+  <p class="comment-text">
+    <strong>{{ comment.user.username }}</strong>
+    {{ comment.text }}
+  </p>
+
+  {% if show_comment_actions %}
+    <div class="comment-meta">
+      <small>{{ comment.created_at|timesince }} ago</small>
+
+      <a href="#" class="reply-btn" data-id="{{ comment.id }}">Reply</a>
+
+      {% if comment.user == request.user %}
+        <a href="#" class="delete-comment" data-id="{{ comment.id }}">Delete</a>
+      {% endif %}
+    </div>
+
+    <!-- REPLY FORM -->
+    <form class="reply-form hidden" data-comment-id="{{ comment.id }}">
+      {% csrf_token %}
+      <input type="text" name="comment" placeholder="Write a reply..." required>
+      <button type="submit">Reply</button>
+    </form>
+  {% endif %}
+
+  {% if show_comment_actions %}
+    <div class="replies">
+      {% for reply in comment.replies.all %}
+        {% include "Posts/comment.html" with comment=reply show_comment_actions=True %}
+      {% endfor %}
+    </div>
+  {% endif %}
+
+</div>

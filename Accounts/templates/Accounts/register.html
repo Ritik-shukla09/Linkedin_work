@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{% block title %}Create Account{% endblock %}
+
+{% block content %}
+<div class="card shadow">
+  <div class="card-body">
+
+    <h4 class="card-title text-center mb-4">Create your account</h4>
+
+    {% for message in messages %}
+      <div class="alert alert-danger">{{ message }}</div>
+    {% endfor %}
+<form method="post" action="{% url 'register' %}">
+      {% csrf_token %}
+
+      <!-- Username -->
+      <div class="mb-3">
+        <label class="form-label">Username</label>
+        {{ form.username }}
+      </div>
+
+      <!-- Email -->
+      <div class="mb-3">
+        <label class="form-label">Email</label>
+        {{ form.email }}
+      </div>
+
+      <!-- Role -->
+      <div class="mb-3">
+        <label class="form-label">Role</label>
+        {{ form.role }}
+      </div>
+
+      <!-- Password -->
+      <div class="mb-3">
+        <label class="form-label">Password</label>
+        {{ form.password1 }}
+      </div>
+
+      <!-- Confirm Password -->
+      <div class="mb-4">
+        <label class="form-label">Confirm Password</label>
+        {{ form.password2 }}
+      </div>
+
+      <button class="btn btn-primary w-100">Create Account</button>
+    </form>
+
+    <div class="text-center mt-3">
+      <small>
+        Already on the platform?
+        <a href="{% url 'login' %}">Sign in</a>
+      </small>
+    </div>
+
+  </div>
+</div>
+{% endblock %}

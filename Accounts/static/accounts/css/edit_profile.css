@@ -1,0 +1,175 @@
+/* =========================
+   EDIT PROFILE — BIG CARD
+   ========================= */
+
+.edit-profile-page {
+  display: flex;
+  justify-content: center;
+  padding: 3rem 1rem;
+  background: #f3f6f8;
+}
+
+body.dark-mode .edit-profile-page {
+  background: #0f1113;
+}
+
+/* BIG CARD */
+/* =========================
+   FILE INPUT FIX (Browse overflow)
+   ========================= */
+
+.edit-profile-card input[type="file"] {
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+/* Modern browsers */
+.edit-profile-card input[type="file"]::file-selector-button {
+  margin-right: 1rem;
+  padding: 0.45rem 1rem;
+  border-radius: 0.75rem;
+  border: none;
+  background: #0a66c2;
+  color: #ffffff;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+/* Hover */
+.edit-profile-card input[type="file"]::file-selector-button:hover {
+  background: #004182;
+}
+
+/* Dark mode */
+body.dark-mode .edit-profile-card input[type="file"]::file-selector-button {
+  background: #223a5e;
+  color: #9dc3ff;
+}
+body.dark-mode .edit-profile-card input[type="file"]::file-selector-button:hover {
+  background: #0a66c2;
+}
+/* Header */
+.edit-header {
+  margin-bottom: 2rem;
+  border-bottom: 0.0625rem solid #e4e6eb;
+  padding-bottom: 1rem;
+}
+
+body.dark-mode .edit-header {
+  border-color: #333;
+}
+
+.edit-header h2 {
+  margin: 0;
+  font-size: 1.8rem;
+}
+
+.edit-header p {
+  margin-top: 0.4rem;
+  color: #6c757d;
+}
+
+/* Form */
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+.form-group label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 0.45rem;
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select {
+  width: 100%;
+  padding: 0.75rem 0.9rem;
+  border-radius: 0.75rem;
+  border: 0.0625rem solid #ced4da;
+  font-size: 1rem;
+}
+
+.form-group textarea {
+  min-height: 7.5rem;
+  resize: vertical;
+}
+
+/* Dark inputs */
+body.dark-mode .form-group input,
+body.dark-mode .form-group textarea,
+body.dark-mode .form-group select {
+  background: #121212;
+  color: #e4e6eb;
+  border-color: #333;
+}
+
+/* Help & errors */
+.help-text {
+  font-size: 0.8rem;
+  color: #6c757d;
+}
+
+.error-text {
+  font-size: 0.8rem;
+  color: #dc3545;
+}
+
+/* =========================
+   ACTION BAR (BOTTOM)
+   ========================= */
+
+.edit-actions {
+  margin-top: 2.5rem;
+  padding-top: 1.5rem;
+  border-top: 0.0625rem solid #e4e6eb;
+
+  display: flex;
+  gap: 1rem;
+  justify-content: flex-end;
+}
+
+body.dark-mode .edit-actions {
+  border-color: #333;
+}
+
+/* SAVE — BLUE (PRIMARY) */
+.btn-save {
+  background: #0a66c2;
+  color: #ffffff;
+  border: none;
+  padding: 0.75rem 2rem;
+  border-radius: 999px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.btn-save:hover {
+  background: #004182;
+}
+
+/* CANCEL — RED / THEME BASED */
+.btn-cancel {
+  padding: 0.75rem 2rem;
+  border-radius: 999px;
+  font-weight: 600;
+  text-decoration: none;
+  border: 0.0625rem solid #dc3545;
+  color: #dc3545;
+  background: transparent;
+}
+
+.btn-cancel:hover {
+  background: rgba(220, 53, 69, 0.1);
+}
+
+/* Dark mode cancel */
+body.dark-mode .btn-cancel {
+  border-color: #ff6b6b;
+  color: #ff6b6b;
+}
+
+body.dark-mode .btn-cancel:hover {
+  background: rgba(255, 107, 107, 0.15);
+}

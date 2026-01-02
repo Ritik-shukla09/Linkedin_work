@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="container-fluid px-3">
+  <h2 class="network-title mb-3">Followers</h2>
+
+  <div class="network-list">
+    {% for f in followers %}
+      <div class="network-card">
+
+        <div class="network-info">
+          <div class="avatar">
+            {% if f.follower.profile.profile_image %}
+              <img src="{{ f.follower.profile.profile_image.url }}">
+            {% else %}
+              {{ f.follower.username|first|upper }}
+            {% endif %}
+          </div>
+
+          <div class="details">
+            <strong>{{ f.follower.username }}</strong>
+            <small>Follower</small>
+          </div>
+        </div>
+
+      </div>
+    {% empty %}
+      <p>No followers yet</p>
+    {% endfor %}
+  </div>
+</div>
+
+{% endblock %}

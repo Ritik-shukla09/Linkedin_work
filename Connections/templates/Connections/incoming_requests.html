@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+{% load static %}
+
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'connections/request.css' %}">
+{% endblock %}
+
+
+{% block content %}
+
+<h2>Connection Requests</h2>
+{% csrf_token %}
+
+{% for req in requests %}
+  <div class="request-card" data-id="{{ req.id }}">
+
+    <!-- LEFT: PROFILE IMAGE -->
+
+{% if req.sender.profile.profile_image %}
+  <img src="{{ req.sender.profile.profile_image.url }}" class="req-avatar">
+{% else %}
+  <div class="req-avatar placeholder">
+    {{ req.sender.username|slice:":1"|upper }}
+  </div>
+{% endif %}
+
+    <!-- CENTER: PROFILE INFO -->
+    <div class="req-info">
+      <div class="req-info">
+
+  <!-- Username (NOT clickable) -->
+  <h4 class="username-text">
+    {{ req.sender.username }}
+  </h4>
+
+  <!-- View profile (ONLY clickable part) -->
+  <a href="{% url 'user_profile' req.sender.username %}" class="view-profile-link">
+    View profile
+  </a>
+
+</div>
+
+
+
+      <p class="req-headline">
+        {{ req.sender.profile.headline|default:"No headline" }}
+      </p>
+      <p class="req-location">
+        {{ req.sender.profile.location }}
+      </p>
+    </div>
+
+    <!-- RIGHT: ACTIONS -->
+    <div class="req-actions">
+      <!-- <button class="accept-btn" data-id="{{ req.id }}">Accept</button>
+      <button class="reject-btn" data-id="{{ req.id }}">Reject</button> -->
+      <button class="btn btn-connect js-accept" data-request-id="{{ req.id }}">Accept</button>
+      <button class="btn btn-pending js-reject" data-request-id="{{ req.id }}">Reject</button>
+
+    </div>
+
+  </div>
+{% empty %}
+  <p>No pending requests</p>
+{% endfor %}
+
+<script src="{% static 'connections/connections.js' %}"></script>
+{% endblock %}

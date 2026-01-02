@@ -1,0 +1,294 @@
+/* =============================== */
+/* 🌍 GLOBAL RESET / FIXES         */
+/* =============================== */
+
+html, body {
+  height: 100%;
+}
+
+/* =============================== */
+/* 🌞 LIGHT MODE (DEFAULT)         */
+/* =============================== */
+
+body {
+  min-height: 100vh;
+  background-color: #f3f2ef;
+  color: #000;
+  padding-bottom: 4.375rem; /* space for footer */
+}
+
+/* =============================== */
+/* 🌙 DARK MODE                   */
+/* =============================== */
+
+body.dark-mode {
+  background-color: #121212;
+  color: #e4e6eb;
+}
+
+/* Cards */
+body.dark-mode .card {
+  background-color: #1e1e1e;
+  color: #e4e6eb;
+  border-color: #333;
+}
+
+/* Text */
+body.dark-mode p,
+body.dark-mode h1,
+body.dark-mode h2,
+body.dark-mode h3,
+body.dark-mode span,
+body.dark-mode small,
+body.dark-mode label {
+  color: #e4e6eb;
+}
+
+/* =============================== */
+/* 🔵 NAVBAR — ALWAYS BLUE         */
+/* =============================== */
+
+.linkedin-navbar {
+  background-color: #0a66c2 !important;
+  z-index: 1050;
+  padding-top: 0.8rem;
+  padding-bottom: 0.8rem;
+}
+
+/* Navbar text & icons */
+.linkedin-navbar,
+.linkedin-navbar a,
+.linkedin-navbar i,
+.linkedin-navbar button,
+.linkedin-navbar small {
+  color: #ffffff !important;
+}
+
+/* Stop Bootstrap interference */
+.linkedin-navbar.navbar {
+  background-image: none !important;
+}
+
+/* Branding */
+.linkedin-navbar .navbar-brand {
+  font-size: 1.4rem;
+}
+
+.linkedin-navbar a,
+.linkedin-navbar button {
+  line-height: 1.2;
+}
+
+/* =============================== */
+/* 🌙 THEME TOGGLE BUTTON          */
+/* =============================== */
+
+.theme-toggle {
+  margin-left: auto;
+  background: rgba(255, 255, 255, 0.15);
+  border: none;
+  padding: 0.4rem 0.8rem;
+  border-radius: 999px;
+  cursor: pointer;
+  font-size: 1rem;
+  color: #fff;
+}
+
+.theme-toggle:hover {
+  background: rgba(255, 255, 255, 0.25);
+}
+
+.theme-toggle:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.4);
+}
+
+/* =============================== */
+/* 🔍 NAVBAR SEARCH (ALWAYS WHITE) */
+/* =============================== */
+
+.navbar-search input {
+  width: 260px;
+  padding: 0.45rem 0.75rem;
+  border-radius: 999px;
+  border: none;
+  outline: none;
+  background-color: #ffffff !important;
+  color: #000000 !important;
+  font-size: 0.9rem;
+  transition: box-shadow 0.2s ease;
+}
+
+.navbar-search input::placeholder {
+  color: #6b7280;
+}
+
+.navbar-search input:focus {
+  box-shadow: 0 0 0 3px rgba(10, 102, 194, 0.35);
+}
+
+.navbar-search input:disabled {
+  background-color: #ffffff !important;
+  color: #9ca3af !important;
+  cursor: not-allowed;
+  opacity: 0.8;
+}
+
+body.dark-mode .navbar-search input {
+  background-color: #ffffff !important;
+  color: #000000 !important;
+}
+
+/* =============================== */
+/* 🔔 FLASH MESSAGES               */
+/* =============================== */
+
+.flash-message {
+  padding: 0.6rem 0.9rem;
+  border-radius: 10px;
+  font-size: 0.85rem;
+  margin-bottom: 0.9rem;
+  animation: fadeInDown 0.25s ease both;
+}
+
+.flash-message.info {
+  background: #eff6ff;
+  color: #1d4ed8;
+  border: 1px solid #bfdbfe;
+}
+
+.flash-message.error {
+  background: #fee2e2;
+  color: #991b1b;
+  border: 1px solid #fecaca;
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Dark mode flash */
+body.dark-mode .flash-message.info {
+  background: #1e3a8a;
+  color: #dbeafe;
+  border-color: #2563eb;
+}
+
+body.dark-mode .flash-message.error {
+  background: #7f1d1d;
+  color: #fee2e2;
+  border-color: #b91c1c;
+}
+
+/* =============================== */
+/* 👤 DROPDOWN / LOGOUT            */
+/* =============================== */
+
+.dropdown-username {
+  color: black;
+}
+
+body.dark-mode .dropdown-username {
+  color: #e5e7eb;
+}
+
+.logout-dropdown {
+  background-color:white !important;
+}
+
+/* LIGHT MODE */
+.logout-dropdown .logout-btn {
+  background: none;
+  border: none;
+  padding: 0.65rem 1rem;
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: red !important;
+  text-align: left;
+  border-radius: 0.5rem;
+  width: 100%;
+}
+
+/* HOVER (LIGHT) */
+.logout-dropdown .logout-btn:hover {
+  background-color: rgba(220, 38, 38, 0.12) !important;
+}
+
+/* DARK MODE */
+body.dark-mode .logout-dropdown .logout-btn {
+  color: red!important;
+}
+
+/* HOVER (DARK) */
+body.dark-mode .logout-dropdown .logout-btn:hover {
+  background-color: rgba(252, 165, 165, 0.18) !important;
+}
+
+
+body.dark-mode .logout-dropdown {
+  background-color:black !important;
+}
+
+/* 
+body.dark-mode .logout-btn:hover {
+  background-color: rgba(252, 165, 165, 0.18) !important;
+} */
+
+body.dark-mode .dropdown-divider {
+  border-color: #374151 !important;
+}
+
+/* =============================== */
+/* PAGE CONTENT WRAPPER            */
+/* =============================== */
+
+.page-content {
+  margin-top: 6.5rem;
+  background: transparent;
+}
+
+/* =============================== */
+/* FOOTER                          */
+/* =============================== */
+.app-footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 64px;
+  background-color: #0a66c2 !important; /* ALWAYS BLUE */
+  border-top: 1px solid #0a66c2;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  z-index: 1000;
+}
+
+
+.footer-item {
+  text-decoration: none;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 12px;
+}
+
+.footer-item i {
+  margin-bottom: 0.25rem;
+}
+
+.footer-item span {
+  font-size: 1rem;
+}
+
+.footer-item:hover {
+  color: orange;
+}

@@ -1,0 +1,19 @@
+<!-- connections/all_users.html -->
+{% csrf_token %}
+<h2>All Users</h2>
+
+{% for user in users %}
+<div>
+  <b>{{ user.username }}</b>
+
+  <button class="connect-btn" data-id="{{ user.id }}">
+    Connect
+  </button>
+
+  <button class="follow-btn" data-id="{{ user.id }}">
+    Follow
+  </button>
+</div>
+{% endfor %}
+
+<script src="{% static 'connections/connections.js' %}"></script>

@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block title %}Post Job{% endblock %}
+
+{% block content %}
+
+<h5 class="mb-3">Post a Job</h5>
+
+<form method="post">
+  {% csrf_token %}
+
+  <input class="form-control mb-2" name="title" placeholder="Job title" required>
+  <input class="form-control mb-2" name="company" placeholder="Company" required>
+  <input class="form-control mb-2" name="location" placeholder="Location" required>
+
+  <textarea class="form-control mb-3"
+            name="description"
+            rows="4"
+            placeholder="Job description"
+            required></textarea>
+
+  <button class="btn btn-primary btn-sm">Post Job</button>
+  <a href="{% url 'job_list'%}"
+     class="btn btn-secondary btn-sm ms-2">Cancel</a>
+</form>
+
+{% endblock %}

@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+{% block title %}Applicants{% endblock %}
+
+{% block content %}
+
+<h5>Applicants for "{{ job.title }}"</h5>
+
+{% for app in applications %}
+  <div class="card mb-2">
+  <div class="card-body">
+    <div class="row align-items-center">
+
+      <!-- LEFT: Applicant info -->
+      <div class="col-md-6">
+        <h5 class="mb-1">{{ app.applicant.username }}</h5>
+        <small class="mb-0">{{ app.applicant.email }}</small><br>
+        <small>
+          Applied {{ app.applied_at|timesince }} ago
+        </small>
+      </div>
+
+      <!-- RIGHT: Actions -->
+      <div class="col-md-6">
+        <div class="d-flex flex-column align-items-end gap-2">
+
+          <a href="{% url 'user_profile' app.applicant.username %}"
+             class="btn btn-outline-primary btn-sm">
+            View Profile
+          </a>
+
+          {% if app.resume %}
+            <a href="{{ app.resume.url }}"
+               class="btn btn-outline-secondary btn-sm"
+
+               target="_blank">
+              View Resume
+            </a>
+          {% endif %}
+
+          {% if app.status == "pending" %}
+            <div class="d-flex gap-2 flex-wrap justify-content-end">
+              <a href="{% url 'handle_application' app.id 'accept' %}"
+                 class="btn btn-success btn-sm">
+                Accept
+              </a>
+
+              <a href="{% url 'handle_application' app.id 'reject' %}"
+                 class="btn btn-danger btn-sm">
+                Reject
+              </a>
+            </div>
+          {% else %}
+            <span class="badge bg-success">Accepted</span>
+          {% endif %}
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+{% empty %}
+  <p class="mt-0">No applicants yet.</p>
+{% endfor %}
+
+<a href="{% url 'job_list' %}" class="btn btn-secondary btn-sm mt-0">
+  ← Back
+</a>
+
+{% endblock %}

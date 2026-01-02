@@ -1,0 +1,80 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+
+<div class="container-fluid px-3">
+
+  <h2 class="network-title mb-3">My Network</h2>
+      {% csrf_token %}
+
+  <div class="network-list">
+
+  {% for item in data %}
+  <div class="network-card" data-user-id="{{ item.user.id }}">
+
+    <!-- LEFT -->
+    <div class="network-info">
+
+      <!-- Avatar -->
+<div class="avatar">
+  {% if item.user.profile.profile_image %}
+    <img src="{{ item.user.profile.profile_image.url }}" alt="{{ item.user.username }}">
+  {% else %}
+    {{ item.user.username|first|upper }}
+  {% endif %}
+</div>
+
+      <!-- Text -->
+      <div class="details">
+        <strong>{{ item.user.username }}</strong>
+        <small>Member</small>
+      </div>
+
+    </div>
+
+    <!-- RIGHT (Actions) -->
+    <div class="req-actions">
+
+      {% if item.is_connected %}
+       <button
+  class="btn btn-connected js-disconnect"
+  data-user-id="{{ item.user.id }}">
+  Connected
+</button>
+
+      {% else %}
+        <!-- FIXED: use item.user.id -->
+        <button class="btn btn-connect js-connect" data-user-id="{{ item.user.id }}">
+          Connect
+        </button>
+      {% endif %}
+   
+
+{% if item.is_following %}
+  <button
+    class="btn btn-pending js-unfollow"
+    data-user-id="{{ item.user.id }}">
+    Following
+  </button>
+{% else %}
+  <button
+    class="btn btn-follow js-follow"
+    data-user-id="{{ item.user.id }}">
+    Follow
+  </button>
+  
+{% endif %}
+
+
+
+    </div>
+
+  </div>
+  {% empty %}
+    <p>No users found</p>
+  {% endfor %}
+</div>
+
+<script src="{% static 'connections/connections.js' %}"></script>
+{% endblock %}

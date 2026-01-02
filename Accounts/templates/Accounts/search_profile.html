@@ -1,0 +1,199 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'accounts/css/profile.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<div class="profile-container">
+
+  <!-- PROFILE HEADER -->
+  <div class="profile-header">
+    <div class="cover"></div>
+
+    <div class="profile-info">
+
+      <!-- PROFILE IMAGE -->
+      <div style="text-align:center;">
+        {% if profile_user.profile.profile_image %}
+          <img src="{{ profile_user.profile.profile_image.url }}"
+               style="
+                 width: 15rem;
+                 height: 15rem;
+                 border-radius: 50%;
+                 object-fit: cover;
+                 border: 0.35rem solid coral;
+               ">
+        {% else %}
+          <div class="avatar-fallback">
+            {{ profile_user.username|first|upper }}
+          </div>
+        {% endif %}
+      </div>
+
+      <!-- BASIC INFO -->
+      <div class="details">
+        <h1>
+          {{ profile_user.get_full_name|default:profile_user.username }}
+        </h1>
+
+        <h3>
+          {{ profile_user.profile.headline|default:"No headline added" }}
+        </h3>
+
+        <p class="location">
+          {{ profile_user.profile.location|default:"Location not provided" }}
+        </p>
+
+        <!-- ❌ NO Edit button here (view-only page) -->
+
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ABOUT -->
+  <div class="card">
+    <h2>About</h2>
+    <p>
+      {{ profile_user.profile.bio|default:"No bio added yet." }}
+    </p>
+  </div>
+
+  <!-- EXPERIENCE / EDUCATION -->
+  <div class="card">
+    <h2>
+      {% if profile_user.profile.company %}
+        Experience
+      {% else %}
+        Education
+      {% endif %}
+    </h2>
+
+    {% if profile_user.profile.company %}
+      <p>
+        <strong>Company:</strong>
+        {{ profile_user.profile.company }}
+      </p>
+    {% endif %}
+
+    {% if profile_user.profile.college %}
+      <p>
+        <strong>College:</strong>
+        {{ profile_user.profile.college }}
+      </p>
+    {% endif %}
+  </div>
+
+  <!-- SKILLS -->
+  {% if skills_list %}
+    <div class="card">
+      <h2>Skills</h2>
+      <div class="skills-list">
+        {% for skill in skills_list %}
+          <span class="skill-pill">{{ skill }}</span>
+        {% endfor %}
+      </div>
+    </div>
+  {% endif %}
+
+  <!-- FOLLOW / CONNECT BUTTONS -->
+  {% if request.user != profile_user %}
+  <div class="profile-action-buttons">
+
+
+  <div class="profile-btn disabled">
+    Followers <span>{{ followers_count }}</span>
+  </div>
+
+  <div class="profile-btn disabled">
+    Connections <span>{{ connections_count }}</span>
+  </div>
+
+</div>
+{% endif %}
+
+</div>
+<!-- ================= POSTS ================= -->
+<!-- ================= POSTS ================= -->
+<div class="card">
+  <h2>Posts</h2>
+
+  {% if posts %}
+    <div class="feed">
+
+      {% for post in posts %}
+      <div class="post-card" data-post-id="{{ post.id }}">
+
+        <!-- HEADER -->
+        <div class="post-header">
+          <strong>{{ post.author.username }}</strong>
+          <small>{{ post.created_at|timesince }} ago</small>
+        </div>
+
+        <!-- CONTENT -->
+        <p class="post-text">{{ post.content }}</p>
+
+        {% if post.image %}
+          <img src="{{ post.image.url }}" class="post-media">
+        {% endif %}
+
+        {% if post.video %}
+          <video controls class="post-media">
+            <source src="{{ post.video.url }}">
+          </video>
+        {% endif %}
+
+        <!-- ACTIONS -->
+        <div class="post-actions">
+          <span class="like-btn" data-id="{{ post.id }}">
+            ❤️ <span class="like-count">{{ post.like_count }}</span>
+          </span>
+        
+    <span class="comment-count">
+      💬 <span class="count">{{ post.comment_count }}</span>
+    </span>
+  </div>
+
+  <!-- COMMENTS (max 2) -->
+  <div class="comments">
+    {% for comment in post.comments.all %}
+      {% if not comment.parent and forloop.counter < 2 %}
+        {% include "Posts/comment.html" with comment=comment show_comment_actions=False %}
+      {% endif %}
+    {% endfor %}
+  </div>
+
+  {% if post.comment_count > 1 %}
+    <a href="{% url 'view_all_comments' post.id %}" class="view-all">
+      View all comments
+    </a>
+  {% endif %}
+
+        </div>
+        
+
+        <!-- ADD COMMENT -->
+        <form class="comment-form" data-post-id="{{ post.id }}">
+          {% csrf_token %}
+          <input type="text"
+                 name="comment"
+                 placeholder="Write a comment…"
+                 required>
+          <button type="submit">Post</button>
+        </form>
+
+      </div>
+      {% endfor %}
+
+    </div>
+  {% else %}
+    <p class="muted-text">No posts yet.</p>
+  {% endif %}
+</div>
+
+</div>
+
+{% endblock %}

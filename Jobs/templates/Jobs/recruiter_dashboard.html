@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block title %}Recruiter Dashboard{% endblock %}
+{% block content %}
+<h5>Your Job Posts</h5>
+
+{% for job in jobs %}
+  <div class="card mb-2">
+    <div class="card-body d-flex justify-content-between">
+      <div>
+        <h6>{{ job.title }}</h6>
+        <small class="mt=0">{{ job.company }}</small>
+      </div>
+
+      <a href="{% url 'job_applicants' job.id %}"
+         class="btn btn-outline-primary btn-sm">
+        Applicants
+      </a>
+    </div>
+    
+  </div>
+{% empty %}
+  <p class="mb-0">No jobs yet.</p>
+{% endfor %}
+
+<a href="{% url 'job_list' %}" class="btn btn-secondary btn-sm mt-2">
+  ← Back
+</a>
+{% endblock %}

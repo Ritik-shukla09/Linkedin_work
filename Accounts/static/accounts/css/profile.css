@@ -1,0 +1,369 @@
+/* =========================
+   PROFILE PAGE LAYOUT
+   ========================= */
+
+.profile-container {
+  max-width: 72rem;
+  margin: 0 auto;
+  padding: 2rem 2rem 3rem;
+}
+
+/* =========================
+   PROFILE HEADER
+   ========================= */
+
+.profile-header {
+  background: #ffffff;
+  border-radius: 1rem;
+  overflow: hidden;
+  margin-bottom: 2rem;
+}
+
+body.dark-mode .profile-header {
+  background: #1c1e21;
+}
+
+/* Cover */
+.cover {
+  height: 10rem;
+  background: linear-gradient(135deg, #0a66c2, #004182);
+}
+
+/* Header content */
+.profile-info {
+  padding: 2rem;
+  text-align: center;
+}
+
+/* Avatar */
+.profile-info img {
+  width: 15rem;
+  height: 15rem;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 0.35rem solid coral;
+  margin-top: -7.5rem;
+  background: #fff;
+}
+
+/* Main text */
+.profile-info .details h1 {
+  margin-top: 1rem;
+  font-size: 2rem;
+}
+
+.profile-info .details h3 {
+  margin: 0.4rem 0;
+  font-weight: 500;
+  color: #6c757d;
+}
+
+.profile-info .location {
+  font-size: 0.9rem;
+  color: #6c757d;
+}
+
+/* Edit button */
+.edit-btn {
+  display: inline-block;
+  margin-top: 0.75rem;
+  padding: 0.45rem 1.25rem;
+  border-radius: 999px;
+  border: 0.0625rem solid #0a66c2;
+  color: #0a66c2;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.edit-btn:hover {
+  background: #e7f3ff;
+}
+
+/* =========================
+   PROFILE CARDS
+   ========================= */
+
+.card {
+  background: #ffffff;
+  border-radius: 1rem;
+  margin-bottom: 1.75rem;
+
+  /* KEY FIX */
+  padding: 2rem 2.5rem;
+  border-left: 0.35rem solid #0a66c2;
+}
+
+body.dark-mode .card {
+  background: #1c1e21;
+  border-left-color: #9dc3ff;
+}
+
+/* Headings */
+.card h2 {
+  margin-bottom: 1rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+/* Text */
+.card p {
+  margin: 0.75rem 0;
+  line-height: 1.7;
+  font-size: 0.95rem;
+}
+
+/* =========================
+   STATS + ACTION BUTTONS
+   ========================= */
+
+.profile-action-buttons {
+  display: flex;
+  gap: 1rem;
+  margin: 1.5rem 0;
+  flex-wrap: wrap;
+}
+
+.profile-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.5rem 1.25rem;
+  border-radius: 999px;
+  background: #0a66c2;
+  color: #ffffff;
+  font-weight: 600;
+  text-decoration: none;
+  font-size: 0.9rem;
+}
+
+.profile-btn span {
+  background: rgba(255, 255, 255, 0.2);
+  padding: 0.1rem 0.5rem;
+  border-radius: 999px;
+  font-size: 0.75rem;
+}
+
+.profile-btn:hover {
+  background: #004182;
+}
+
+.profile-btn.outline {
+  background: transparent;
+  border: 0.0625rem solid #0a66c2;
+  color: #0a66c2;
+}
+
+.profile-btn.outline span {
+  background: rgba(10, 102, 194, 0.1);
+}
+
+body.dark-mode .profile-btn.outline {
+  border-color: #9dc3ff;
+  color: #9dc3ff;
+}
+
+/* =========================
+   SKILLS
+   ========================= */
+
+.skills-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.skill-pill {
+  padding: 0.35rem 0.75rem;
+  border-radius: 999px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  background: #e7f3ff;
+  color: #0a66c2;
+}
+
+body.dark-mode .skill-pill {
+  background: #223a5e;
+  color: #9dc3ff;
+}
+
+/* =========================
+   MOBILE
+   ========================= */
+
+@media (max-width: 48rem) {
+  .profile-container {
+    padding: 1.5rem 1rem;
+  }
+
+  .profile-info img {
+    width: 11rem;
+    height: 11rem;
+    margin-top: -6rem;
+  }
+
+  .profile-action-buttons {
+    justify-content: center;
+  }
+}
+
+/* ================= PROFILE POSTS ================= */
+
+.profile-posts {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.profile-post {
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 1rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+}
+
+.profile-post-header {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.85rem;
+  color: #6b7280;
+}
+
+.profile-post-text {
+  margin: 0.75rem 0;
+  line-height: 1.5;
+  font-size: 0.95rem;
+}
+
+.profile-post-media {
+  width: 100%;
+  border-radius: 10px;
+  margin-top: 0.5rem;
+}
+
+/* Dark mode */
+body.dark-mode .profile-post {
+  background-color: #1e1e1e;
+}
+
+.muted-text {
+  color: #6b7280;
+  font-size: 0.9rem;
+}
+
+
+
+
+
+/* =============================== */
+/* 🔍 SEARCH RESULTS PAGE         */
+/* =============================== */
+
+.search-container {
+  max-width: 800px;
+  margin: auto;
+}
+
+/* Each user card */
+.search-card {
+  background: #ffffff;
+  border-radius: 14px;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.search-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 18px rgba(0,0,0,0.08);
+}
+
+/* Avatar */
+.search-avatar {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #0a66c2;
+}
+
+/* Fallback avatar */
+.search-avatar-fallback {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: #0a66c2;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.4rem;
+  font-weight: 600;
+}
+
+/* User info */
+.search-info {
+  flex: 1;
+}
+
+.search-info h3 {
+  margin: 0;
+  font-size: 1.05rem;
+}
+
+.search-info p {
+  margin: 0.15rem 0;
+  font-size: 0.85rem;
+  color: #6b7280;
+}
+
+/* View profile button */
+.search-btn {
+  padding: 0.4rem 0.8rem;
+  border-radius: 999px;
+  background: #0a66c2;
+  color: white;
+  font-size: 0.8rem;
+  text-decoration: none;
+  transition: background 0.2s ease;
+}
+
+.search-btn:hover {
+  background: #004182;
+}
+
+/* =============================== */
+/* 🌙 DARK MODE                   */
+/* =============================== */
+
+body.dark-mode .search-card {
+  background-color: #1e1e1e;
+}
+
+body.dark-mode .search-info p {
+  color: #9ca3af;
+}
+
+body.dark-mode .search-btn {
+  background: #2563eb;
+}
+/* =============================== */
+/* 📦 POST CARD — WIDER (NO PX)    */
+/* =============================== */
+
+.post-card {
+  width: 90%;
+  max-width: 48rem;     /* scales with font-size, NOT px */
+  margin: 0 auto 1.5rem;
+}
+
+/* Media safety */
+.post-media {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}

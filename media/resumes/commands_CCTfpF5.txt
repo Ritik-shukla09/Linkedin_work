@@ -1,0 +1,56 @@
+# Drill1
+
+Delete all files having the `.log` extension
+
+find hello -type f -name "*.log" -delete
+
+Explanation:
+- `find` searches for files or directories.
+- `hello` is the starting directory.
+- `-type f` ensures only files are targeted.
+- `-name "*.log"` finds files ending with `.log`.
+- `-delete` removes them.
+
+Example deleted files:
+hello/one/two/three/four/access.log
+hello/five/six/seven/error.log
+
+
+##  Add content to `a.txt`
+
+echo "Unix is a family of multitasking, multiuser computer operating systems that derive from the original AT&T Unix, development starting in the 1970s at the Bell Labs research center by Ken Thompson, Dennis Ritchie, and others" > hello/one/a.txt
+
+Explanation:
+- `echo` prints the given text.
+- `>` redirects the output to overwrite `a.txt`.
+- Using full path ensures the correct file is updated.
+
+
+# Delete the directory named `five` 
+
+rm -r hello/five
+
+Explanation:
+- `rm` removes files or directories.
+- `-r` (recursive) deletes the directory and its contents.
+- `hello/five` is the target directory.
+
+
+# Rename the `one` directory to `uno`
+
+mv hello/one  hello/uno
+
+Explanation:
+- `mv` moves or renames directories.
+- First argument is the current name , second is the new name.
+
+
+# Move `a.txt` to the `two` directory,
+
+mv hello/uno/a.txt  hello/uno/two/
+
+Explanation:
+- `mv` moves the file `a.txt` into the `two` directory.
+
+
+

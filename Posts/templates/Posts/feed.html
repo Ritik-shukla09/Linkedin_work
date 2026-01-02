@@ -1,0 +1,92 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'posts/posts.css' %}">
+<script src="{% static 'posts/posts.js' %}"></script>
+{% endblock %}
+
+{% block content %}
+<div class="feed">
+<!-- ================= CREATE POST BUTTON ================= -->
+<div class="post-card create-post-card">
+  <a href="{% url 'create_post' %}" class="create-post-link">
+    <span class="create-post-placeholder">
+      Start a post…
+    </span>
+    <button class="post-btn">Post</button>
+  </a>
+</div>
+
+{% for post in posts %}
+<div class="post-card" data-post-id="{{ post.id }}">
+
+  <!-- HEADER -->
+  <div class="post-header">
+    <strong>{{ post.author.username }}</strong>
+    <small>{{ post.created_at|timesince }} ago</small>
+
+    {% if post.author == request.user %}
+    <button
+  type="button"
+  class="delete-post"
+  data-id="{{ post.id }}"
+  title="Delete post"
+>
+  ⋮
+</button>
+
+    {% endif %}
+  </div>
+
+  <!-- CONTENT -->
+  <p class="post-text">{{ post.content }}</p>
+
+  {% if post.image %}
+    <img src="{{ post.image.url }}" class="post-media">
+  {% endif %}
+
+  {% if post.video %}
+    <video controls class="post-media">
+      <source src="{{ post.video.url }}">
+    </video>
+  {% endif %}
+
+  <!-- ACTIONS -->
+  <div class="post-actions">
+    <span class="like-btn" data-id="{{ post.id }}">
+      👍 😊 🔥 <span class="like-count">{{ post.like_count }}</span>
+    </span>
+
+    <span class="comment-count">
+      💬 <span class="count">{{ post.comment_count }}</span>
+    </span>
+  </div>
+
+  <!-- COMMENTS (max 2) -->
+  <div class="comments">
+    {% for comment in post.comments.all %}
+      {% if not comment.parent and forloop.counter < 2 %}
+        {% include "Posts/comment.html" with comment=comment show_comment_actions=False %}
+      {% endif %}
+    {% endfor %}
+  </div>
+
+  {% if post.comment_count > 1 %}
+    <a href="{% url 'view_all_comments' post.id %}" class="view-all">
+      View all comments
+    </a>
+  {% endif %}
+
+  <!-- ADD COMMENT -->
+  <form class="comment-form" data-post-id="{{ post.id }}">
+    {% csrf_token %}
+    <input type="text" name="comment" placeholder="Write a comment..." required>
+    <button type="submit">Post</button>
+  </form>
+
+</div>
+{% endfor %}
+
+</div>
+{% endblock %}

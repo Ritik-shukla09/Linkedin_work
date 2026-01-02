@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Edit Profile{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'accounts/css/edit_profile.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<div class="edit-profile-page">
+
+  <!-- BIG CARD -->
+  <div class="edit-profile-card">
+
+    <div class="edit-header">
+      <h2>Edit Profile</h2>
+      <p>Update your personal information</p>
+    </div>
+
+    <form method="POST" enctype="multipart/form-data">
+      {% csrf_token %}
+
+      {% for field in form %}
+        <div class="form-group">
+          <label for="{{ field.id_for_label }}">
+            {{ field.label }}
+          </label>
+
+          {{ field }}
+
+          {% if field.help_text %}
+            <small class="help-text">{{ field.help_text }}</small>
+          {% endif %}
+
+          {% for error in field.errors %}
+            <small class="error-text">{{ error }}</small>
+          {% endfor %}
+        </div>
+      {% endfor %}
+
+      <!-- ACTION BUTTONS -->
+      <div class="edit-actions">
+        <button type="submit" class="btn-save">
+          Save Changes
+        </button>
+
+        <a href="{% url 'profile' %}" class="btn-cancel">
+          Cancel
+        </a>
+      </div>
+
+    </form>
+
+  </div>
+
+</div>
+
+{% endblock %}

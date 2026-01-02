@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'posts/posts.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="feed">
+ <button type="button" class="back-btn" id="backBtn">
+  ← Back
+</button>
+
+  <div class="post-card create-post-page">
+
+    <h3>Create a post</h3>
+
+    <form method="POST" enctype="multipart/form-data">
+      {% csrf_token %}
+
+      <textarea
+        name="content"
+        placeholder="What do you want to talk about?"
+        required
+      ></textarea>
+
+      <div class="create-post-actions">
+        <label class="upload-btn">
+          📷 Image
+          <input type="file" name="image" hidden>
+        </label>
+
+        <label class="upload-btn">
+          🎥 Video
+          <input type="file" name="video" hidden>
+        </label>
+
+        <button type="submit" class="post-btn">
+          Post
+        </button>
+      </div>
+
+    </form>
+
+  </div>
+
+</div>
+{% endblock %}

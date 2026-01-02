@@ -1,0 +1,112 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Profile | {{ profile.user.username }}{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'accounts/css/profile.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<div class="profile-container">
+
+  <!-- PROFILE HEADER -->
+  <div class="profile-header">
+    <div class="cover"></div>
+
+    <div class="profile-info">
+
+      <!-- PROFILE IMAGE -->
+      <div style="text-align:center;">
+        {% if profile.profile_image %}
+          <img src="{{ profile.profile_image.url }}"
+               style="
+                 width: 15rem;
+                 height: 15rem;
+                 border-radius: 50%;
+                 object-fit: cover;
+                 border: 0.35rem solid coral;
+               ">
+        {% else %}
+          <div class="avatar-fallback">
+            {{ profile.user.username|first|upper }}
+          </div>
+        {% endif %}
+      </div>
+
+      <!-- BASIC INFO -->
+      <div class="details">
+        <h1>{{ profile.user.get_full_name|default:profile.user.username }}</h1>
+        <h3>{{ profile.headline }}</h3>
+        <p class="location">{{ profile.location }}</p>
+
+        {% if request.user == profile.user %}
+          <a href="{% url 'edit_profile' %}" class="edit-btn">Edit profile</a>
+        {% endif %}
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ABOUT -->
+  <div class="card">
+    <h2>About</h2>
+    <p>{{ profile.bio|default:"No bio added yet." }}</p>
+  </div>
+
+  <!-- EXPERIENCE / EDUCATION -->
+  <div class="card">
+    <h2>
+      {% if profile.company %}
+        Experience
+      {% else %}
+        Education
+      {% endif %}
+    </h2>
+
+    {% if profile.company %}
+      <p><strong>Company:</strong> {{ profile.company }}</p>
+    {% endif %}
+
+    {% if profile.college %}
+      <p><strong>College:</strong> {{ profile.college }}</p>
+    {% endif %}
+  </div>
+
+  <!-- SKILLS -->
+  {% if skills_list %}
+    <div class="card">
+      <h2>Skills</h2>
+      <div class="skills-list">
+        {% for skill in skills_list %}
+          <span class="skill-pill">{{ skill }}</span>
+        {% endfor %}
+      </div>
+    </div>
+  {% endif %}
+
+  <!-- FOLLOWERS / CONNECTIONS BUTTONS -->
+  <div class="profile-action-buttons">
+    <a href="{% url 'followers' %}" class="profile-btn">
+      Followers <span>{{ followers_count }}</span>
+    </a>
+
+    <a href="{% url 'connections_list' %}" class="profile-btn">
+      Connections <span>{{ connections_count }}</span>
+    </a>
+  </div>
+
+  <!-- DELETE ACCOUNT (UNCHANGED) -->
+  <form method="post"
+        action="{% url 'delete_account' %}"
+        style="margin-top: 1rem;"
+        onsubmit="return confirmDelete();">
+    {% csrf_token %}
+    <button type="submit" class="btn btn-danger">
+      Delete Account
+    </button>
+  </form>
+
+</div>
+
+{% endblock %}

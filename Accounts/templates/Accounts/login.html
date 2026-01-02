@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% block title %}Login{% endblock %}
+{% if request.GET.next %}
+  <div class="login-info">
+    Please log in ..
+  </div>
+{% endif %}
+{% block content %}
+<div class="card shadow">
+  <div class="card-body">
+    
+    
+    <h4 class="card-title text-center mb-3">Login</h4>
+   
+
+    <form method="post">
+      {% csrf_token %}
+
+      <div class="mb-3">
+        <input type="text" name="username" class="form-control" placeholder="Username" required>
+      </div>
+
+      <div class="mb-3">
+        <input type="password" name="password" class="form-control" placeholder="Password" required>
+      </div>
+
+      <button class="btn btn-primary w-100">Login</button>
+    </form>
+
+    <div class="text-center mt-3">
+      <a href="{% url 'register' %}">Create new account</a>
+    </div>
+  </div>
+</div>
+{% endblock %}

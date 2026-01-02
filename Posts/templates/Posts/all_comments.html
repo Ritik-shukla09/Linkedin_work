@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="feed">
+
+  <div class="post-card" data-post-id="{{ post.id }}">
+    <h3>Comments</h3>
+
+    {% for comment in comments %}
+      {% include "Posts/comment.html" with comment=comment show_comment_actions=True %}
+    {% empty %}
+      <p>No comments yet</p>
+    {% endfor %}
+  </div>
+
+</div>
+{% endblock %}
