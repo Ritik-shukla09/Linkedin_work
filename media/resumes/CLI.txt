@@ -1,0 +1,25 @@
+Which-: It is used to show the location of the command where it store that you used with "which";
+blkid:- it is used to show the storage of system or hardrive;
+iconfig:-it gives the information about networks like ip address local address etc;
+iwconfig:-it shows the information about the wireless connection and extension;
+uname -a:- it gives summary about the system;
+top:-it shows the cpu process like how much memory the process get and for how much time it work like taskbar;
+df:-it shows available and unavailable diskspace;
+lsusb:-it shows the information about the usb;
+lspci:- it shows the information about the  hardware that conected to pci bus;
+sudo apt install .... :-it is used to install the packages;
+sudo apt removed nameofpackage:-it is used to remove the installed package;
+sudo shutdown -h now:- for shutdown;
+sudo  shutdown -r: for restart;
+find . -name "*.txt" -delete;
+mv:- For move or rename the file or the directory ;
+rm:- for delete the file or repository;
+mkdir -p /hello/one/two/three it is make directory inside directory at one command;
+
+## Pipe And Redirection
+
+| -: it is called pipe that is used to run two or more commands at a time { cat hello | less}
+ cat pg :- only content of file shown and u can scroll it 
+ grep :- command for search in file the content inside the file { cat fruit | grep melon
+ 
+ Some important commands have to learn FTP,TELNET,SSH;

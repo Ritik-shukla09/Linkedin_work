@@ -10,13 +10,18 @@
 }
 
 body.dark-mode .edit-profile-page {
-  background: #0f1113;
+  background:#0f1113;
 }
 
 /* BIG CARD */
 /* =========================
    FILE INPUT FIX (Browse overflow)
    ========================= */
+.edit-profile-card{
+ border-radius: 0.75rem;
+ padding: 0.45rem 1rem;
+
+}
 
 .edit-profile-card input[type="file"] {
   width: 100%;

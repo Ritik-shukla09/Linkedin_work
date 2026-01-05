@@ -1,0 +1,128 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Feed{% endblock %}
+{% block body_class %}feed-page{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'posts/feed_layout.css' %}">
+<link rel="stylesheet" href="{% static 'posts/feed_content.css' %}">
+{% endblock %}
+
+{% block page_wrapper %}
+<div class="feed-shell">
+
+  <!-- LEFT SIDEBAR -->
+<aside class="feed-sidebar left">
+
+
+  <!-- PROFILE CARD -->
+  <div class="card profile-card">
+
+    <div class="profile-avatar">
+      {% if request.user.profile.profile_image %}
+        <img src="{{ request.user.profile.profile_image.url }}" alt="profile">
+      {% else %}
+        <div class="avatar-fallback">
+          {{ request.user.username|first|upper }}
+        </div>
+      {% endif %}
+    </div>
+
+    <h4 class="profile-name">
+      {{ request.user.get_full_name|default:request.user.username }}
+    </h4>
+
+    <p class="profile-headline">
+      {{ request.user.profile.headline|default:"No headline added yet" }}
+    </p>
+                 <div class="profile-stats">
+      <a href="{% url 'followers' %}" class="stat-btn">
+    <span class="stat-number">{{ followers_count }}</span>
+    <span class="stat-label">Followers</span>
+      </a>
+
+    <a href="{% url 'connections_list' %}" class="stat-btn">
+    <span class="stat-number">{{ connections_count }}</span>
+    <span class="stat-label">Connections</span>
+     </a>
+       </div>
+
+       
+  </div>
+
+  <!-- OPPORTUNITIES CARD -->
+  <div class="card opportunities-card large-card">
+
+  <h4>Top Opportunities</h4>
+
+  <ul class="opportunity-list">
+    <li><strong>Django Intern</strong><span class="muted">Remote</span></li>
+    <li><strong>Backend Engineer</strong><span class="muted">India</span></li>
+    <li><strong>Remote Jobs</strong><span class="muted">Worldwide</span></li>
+
+  
+      <li>🔥 Django Developer</li>
+      <li>🌍 Remote Jobs</li>
+      <li>🎓 Internships</li>
+    </ul>
+
+  <a href="{% url 'job_list' %}" class="opportunity-btn">
+    View all opportunities
+  </a>
+
+</div>
+
+
+</aside>
+
+
+  <!-- CENTER FEED -->
+  <main class="feed-main">
+    {% include "Posts/feed_content.html" %}
+  </main>
+
+  <!-- RIGHT SIDEBAR -->
+  <!-- RIGHT SIDEBAR -->
+<aside class="feed-sidebar right">
+
+  <!-- TOP STORIES (TALL CARD) -->
+  <div class="card news-card tall-news-card">
+    <h4>Top Stories</h4>
+
+    <ul class="news-list">
+      <li>
+        <strong>Django 5.1 released</strong>
+        <span class="muted">Framework updates</span>
+      </li>
+      <li>
+        <strong>AI hiring increases</strong>
+        <span class="muted">Tech industry</span>
+      </li>
+      <li>
+        <strong>Remote work trends</strong>
+        <span class="muted">2026 outlook</span>
+      </li>
+      <li>
+        <strong>Startup funding rises</strong>
+        <span class="muted">Global markets</span>
+      </li>
+    </ul>
+  </div>
+
+  <!-- SMALL FOOTER / PROMO CARD -->
+  <div class="card promo-card">
+    <img src="{% static 'images/linkedin.png' %}" alt="LinkedIn">
+
+    <p class="promo-text">
+      About · Accessibility · Help Center · Ad Choices · Advertising
+    </p>
+
+    <small>LinkedIn Corporation © 2026</small>
+  </div>
+
+</aside>
+
+
+</div>
+{% endblock %}

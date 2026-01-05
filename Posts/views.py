@@ -2,6 +2,13 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse
 from django.db.models import Q
+from django.shortcuts import render, get_object_or_404
+from django.contrib.auth import get_user_model
+
+User = get_user_model()
+from django.db.models import Q
+
+from Connections.models import Follow, ConnectionRequest
 
 from .models import Post, Like, Comment
 from .forms import PostForm
@@ -11,21 +18,42 @@ from .forms import PostForm
 # FEED VIEW (shows only 1–2 top-level comments)
 # =====================================================
 from django.views.decorators.cache import never_cache
+from Posts.models import News
 
 @never_cache
 @login_required
+
 def feed_view(request):
+
     posts = (
         Post.objects
         .select_related("author")
         .prefetch_related("likes", "comments__replies")
         .order_by("-created_at")
     )
+    user = request.user
+    profile = user.profile
 
-    return render(request, "Posts/feed.html", {
-    "posts": posts,
-    "show_comment_actions": False,  # 👈 FEED PAGE
-})
+    connections_count = (
+        user.sent_requests.filter(status="accepted").count() +
+        user.received_requests.filter(status="accepted").count()
+    )
+
+    followers_count = user.followers.count()
+    following_count = user.following.count()
+
+
+    # ✅ GET NEWS (NO FILTERING)
+    news = News.objects.all()[:5]
+
+    return render(request, "Posts/feed_layout.html", {
+        "posts": posts,
+        "news": news,                # 👈 REQUIRED
+        "show_comment_actions": False,
+        "followers_count": followers_count,
+        "connections_count": connections_count,
+    })
+
 
 
 

@@ -193,40 +193,71 @@ def home(request):
      if request.user.is_authenticated:
         logout(request)
      return render(request, "home.html")
-
+from django.shortcuts import render, redirect
+from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-from django.shortcuts import render, get_object_or_404
 from django.contrib.auth import get_user_model
+from django.db.models import Q
+
 from Posts.models import Post
+from Connections.models import Follow, ConnectionRequest  # adjust import path
+
+User = get_user_model()
+from django.shortcuts import render, redirect
+from django.contrib import messages
+from django.contrib.auth import get_user_model
+from django.db.models import Q
+
 
 User = get_user_model()
 
-@login_required
 def search_user(request):
+    # 🔒 LOGIN CHECK WITH MESSAGE
+    if not request.user.is_authenticated:
+        messages.warning(request, "Please login ...")
+        return redirect("login")  # change if your login url name is different
+
     query = request.GET.get("q", "").strip()
 
-    user = get_object_or_404(User, username__iexact=query)
+    if not query:
+        messages.warning(request, "Please enter a username to search.")
+        return redirect("feed")
+
+    user = User.objects.filter(username__iexact=query).first()
+
+    if not user:
+        return render(
+            request,
+            "Accounts/search_profile.html",
+            {
+                "error": "User not found.",
+                "query": query,
+            }
+        )
 
     posts = Post.objects.filter(author=user).order_by("-created_at")
+
     followers_count = Follow.objects.filter(following=user).count()
+
     connections_count = ConnectionRequest.objects.filter(
         Q(sender=user, status="accepted") |
         Q(receiver=user, status="accepted")
     ).count()
 
     skills_list = []
-    if hasattr(user.profile, "skills") and user.profile.skills:
+    if hasattr(user, "profile") and user.profile.skills:
         skills_list = [s.strip() for s in user.profile.skills.split(",")]
-
 
     return render(
         request,
         "Accounts/search_profile.html",
         {
             "profile_user": user,
-             "skills_list": skills_list,
-        "followers_count": followers_count,
-        "connections_count": connections_count,
+            "skills_list": skills_list,
+            "followers_count": followers_count,
+            "connections_count": connections_count,
             "posts": posts,
+            "query": query,
         }
     )
+

@@ -1,43 +1,62 @@
+
+
 /* ================= FEED ================= */
 .feed {
-  max-width: 860px;
-  margin: auto;
-  padding: 1rem 0;
+  width: 100%;
+  max-width: 100%;
+  margin: 0 auto;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+
+  /* 🔑 IMPORTANT: keeps content inside center column */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 /* ================= ANIMATION ================= */
 @keyframes fadeUp {
-  from { opacity: 0; transform: translateY(8px); }
-  to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
-/* ================= POST CARD ================= */
+/* =============================== */
+/* 📦 POST CARD — WIDER (SAFE)     */
+/* =============================== */
 .post-card {
   background: #ffffff;
+  max-width: 52rem;  
+  /* wider posts * */
+  width: 100%;
+
+  margin-left: auto;
+  margin-right: auto;
+  /* 🔑 KEY FIX */
+  width: min(45rem, 100%);
+
   padding: 1.3rem 1.5rem;
   border-radius: 16px;
   margin-bottom: 1.8rem;
+
   box-shadow: 0 10px 30px rgba(0,0,0,0.06);
   animation: fadeUp 0.35s ease both;
 }
-/* =============================== */
-/* 📦 POST CARD — WIDER (NO PX)    */
-/* =============================== */
 
-.post-card {
-  width: 90%;
-  max-width: 48rem;     /* scales with font-size, NOT px */
-  margin: 0 auto 1.5rem;
-}
-
-/* Media safety */
+/* ================= MEDIA ================= */
 .post-media {
   width: 100%;
   height: auto;
-  object-fit: contain;
+  max-height: 440px;
+  object-fit: cover;
+  border-radius: 14px;
+  margin-top: 0.6rem;
 }
-
-
 
 /* ================= HEADER ================= */
 .post-header {
@@ -61,15 +80,6 @@
   margin: 0.8rem 0;
   line-height: 1.65;
   color: #1f2937;
-}
-
-/* ================= MEDIA ================= */
-.post-media {
-  width: 100%;
-  max-height: 440px;
-  object-fit: cover;
-  border-radius: 14px;
-  margin-top: 0.6rem;
 }
 
 /* ================= ACTIONS ================= */
@@ -99,6 +109,8 @@
 }
 
 /* ================= COMMENTS ================= */
+
+
 .comments {
   margin-top: 0.8rem;
 }
@@ -261,8 +273,7 @@ body.dark-mode .comment-form input {
   border: none;
 }
 
-
-/* ================= CREATE POST BUTTON ================= */
+/* ================= CREATE POST ================= */
 .create-post-card {
   display: flex;
   align-items: center;
@@ -286,169 +297,40 @@ body.dark-mode .comment-form input {
   background: #f5f7fa;
 }
 
-body.dark-mode .create-post-card:hover {
-  background: #242526;
-}
-
-
-
-
-
-
-
-
-
-/* ================= CREATE POST PAGE ================= */
-.create-post-page textarea {
-  width: 100%;
-  min-height: 120px;
-  resize: none;
-  border-radius: 12px;
-  border: 1px solid #d1d5db;
-  padding: 0.8rem;
-  font-size: 0.9rem;
-}
-
-.create-post-page textarea:focus {
-  outline: none;
-  border-color: #0a66c2;
-}
-
-/* spacing */
-.create-post-page h3 {
-  margin-bottom: 0.8rem;
-}
-
-/* reuse action row */
-.create-post-actions {
-  display: flex;
-  justify-content: space-between;
-  margin-top: 0.8rem;
-}
-
-
-body.dark-mode .create-post-page textarea {
-  background: #3a3b3c;
-  color: #e4e6eb;
-  border: none;
-}
 /* ================= POST BUTTON ================= */
 .post-btn {
   background: linear-gradient(135deg, #0a66c2, #084e96);
   color: #ffffff;
   border: none;
-
   padding: 0.55rem 1.4rem;
   border-radius: 999px;
-
   font-size: 0.9rem;
   font-weight: 600;
-  letter-spacing: 0.3px;
-
   cursor: pointer;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-
-  box-shadow: 0 6px 14px rgba(10, 102, 194, 0.35);
+  box-shadow: 0 6px 14px rgba(10,102,194,0.35);
   transition: all 0.2s ease;
 }
 
-/* hover */
 .post-btn:hover {
   transform: translateY(-1px);
-  box-shadow: 0 10px 22px rgba(10, 102, 194, 0.45);
-  background: linear-gradient(135deg, #084e96, #063970);
+  box-shadow: 0 10px 22px rgba(10,102,194,0.45);
 }
 
-/* active (click) */
-.post-btn:active {
-  transform: translateY(0);
-  box-shadow: 0 4px 10px rgba(10, 102, 194, 0.35);
-}
-
-/* disabled (future use) */
-.post-btn:disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
-  box-shadow: none;
-}
-
-
-
-
-
-
-
-
-
-
-
-/* ================= BACK BUTTON ================= */
-.back-btn {
-  background: transparent;
-  border: 1px solid #0a66c2;
-  color: #0a66c2;
-
-  padding: 0.45rem 1.1rem;
-  border-radius: 999px;
-
-  font-size: 0.85rem;
-  font-weight: 500;
-
-  cursor: pointer;
-  margin-bottom: 0.8rem;
-
-  transition: all 0.2s ease;
-}
-
-/* hover */
-.back-btn:hover {
-  background: #0a66c2;
-  color: #ffffff;
-}
-
-/* active */
-.back-btn:active {
-  transform: scale(0.97);
-}
-body.dark-mode .back-btn {
-  border-color: #70b5f9;
-  color: #70b5f9;
-}
-
-body.dark-mode .back-btn:hover {
-  background: #70b5f9;
-  color: #000000;
-}
-
-
-/* ================= DELETE POST BUTTON ================= */
+/* ================= DELETE POST ================= */
 .delete-post {
   background: transparent;
   border: none;
-
   font-size: 1.2rem;
   font-weight: bold;
   color: #6b7280;
-
   cursor: pointer;
-  padding: 0.2rem 0.5rem;
-  border-radius: 8px;
-
-  transition: background 0.2s ease, color 0.2s ease;
 }
 
 .delete-post:hover {
-  background: rgba(0, 0, 0, 0.05);
-  color: #dc2626; /* red on hover */
+  color: #dc2626;
 }
 
-.delete-post:active {
-  transform: scale(0.95);
-}
 
-/* Dark mode */
-body.dark-mode .delete-post:hover {
-  background: rgba(255, 255, 255, 0.08);
+body.dark-mode .create-post-card:hover {
+  background: #242526;
 }

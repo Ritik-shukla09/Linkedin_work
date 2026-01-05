@@ -3,9 +3,9 @@
    ========================= */
 
 .profile-container {
-  max-width: 72rem;
   margin: 0 auto;
   padding: 2rem 2rem 3rem;
+  max-width:35rem;   /* ≈ 900px */
 }
 
 /* =========================
@@ -13,6 +13,7 @@
    ========================= */
 
 .profile-header {
+   max-width: 100%;
   background: #ffffff;
   border-radius: 1rem;
   overflow: hidden;

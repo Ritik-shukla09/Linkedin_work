@@ -43,7 +43,7 @@
     <!-- RIGHT -->
     <div class="job-actions">
           
-       {% if user.is_authenticated and user.role in "student professional" %}
+       {% if user.is_authenticated and user.role in "student professional recruiter" %}
     <a href="{% url 'job_detail' job.id %}" class="job-btn view">
       Apply
     </a>

@@ -18,12 +18,15 @@
     </a>
 <div class="d-flex justify-content-end gap-2 mb-2">
 
-  {% if is_blocked %}
+  {% if is_blocker %}
+    <!-- ONLY BLOCKER CAN UNBLOCK -->
     <a href="{% url 'unblock_user' other_user.id %}"
        class="btn btn-outline-success btn-sm">
       Unblock
     </a>
-  {% else %}
+
+  {% elif not is_blocked %}
+    <!-- ONLY SHOW BLOCK IF NO BLOCK EXISTS -->
     <a href="{% url 'block_user' other_user.id %}"
        class="btn btn-outline-secondary btn-sm">
       Block
@@ -31,6 +34,7 @@
   {% endif %}
 
 </div>
+
 
   </div>
 
@@ -58,25 +62,28 @@
       {% endfor %}
 
     </div>
-<div class="card-footer">
+                 <div class="card-footer">
 
   {% if is_blocked %}
     <div class="mb-0">
-      You have blocked this user. Unblock to send messages.
+      Messaging is disabled because one of you has blocked the other.
     </div>
   {% else %}
     <form method="post" class="d-flex gap-2">
       {% csrf_token %}
-      <input type="text"
-             name="message"
-             class="form-control"
-             placeholder="Type a message..."
-             required>
+      <input
+        type="text"
+        name="message"
+        class="form-control"
+        placeholder="Type a message..."
+        required
+      >
       <button class="btn btn-primary">Send</button>
     </form>
   {% endif %}
 
 </div>
+
 
   </div>
 

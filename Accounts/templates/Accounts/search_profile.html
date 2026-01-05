@@ -6,6 +6,11 @@
 {% endblock %}
 
 {% block content %}
+{% if error %}
+  <div class="alert alert-warning text-center mt-4">
+    {{ error }}
+  </div>
+{% endif %}
 
 <div class="profile-container">
 
@@ -17,6 +22,7 @@
 
       <!-- PROFILE IMAGE -->
       <div style="text-align:center;">
+        {% if profile_user %}
         {% if profile_user.profile.profile_image %}
           <img src="{{ profile_user.profile.profile_image.url }}"
                style="
@@ -195,5 +201,5 @@
 </div>
 
 </div>
-
+{% endif %}
 {% endblock %}

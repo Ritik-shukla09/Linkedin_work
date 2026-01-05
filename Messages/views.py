@@ -5,6 +5,14 @@ from .models import Block
 
 from .models import Chat, Message
 
+def is_chat_blocked(user1, user2):
+    return Block.objects.filter(
+        blocker=user1, blocked=user2
+    ).exists() or Block.objects.filter(
+        blocker=user2, blocked=user1
+    ).exists()
+
+
 User = get_user_model()
 
 
@@ -16,7 +24,6 @@ def messages_home(request):
         "user_list.html",
         {"users": users}
     )
-
 
 @login_required
 def chat_view(request, user_id):
@@ -32,8 +39,27 @@ def chat_view(request, user_id):
         chat = Chat.objects.create()
         chat.participants.add(request.user, other_user)
 
+    # 🔒 BLOCK CHECK (BOTH SIDES)
+   # 🔒 BLOCK CHECK
+    blocked = Block.objects.filter(
+        blocker=request.user, blocked=other_user
+    ).exists() or Block.objects.filter(
+        blocker=other_user, blocked=request.user
+    ).exists()
+
+    # 👤 AM I THE ONE WHO BLOCKED?
+    is_blocker = Block.objects.filter(
+        blocker=request.user, blocked=other_user
+    ).exists()
+
+    
+
+    # ❌ BLOCK MESSAGE SENDING (BACKEND)
     if request.method == "POST":
-        content = request.POST.get("message")
+        if blocked:
+            return redirect("chat", user_id=other_user.id)
+
+        content = request.POST.get("message", "").strip()
         if content:
             Message.objects.create(
                 chat=chat,
@@ -43,19 +69,17 @@ def chat_view(request, user_id):
         return redirect("chat", user_id=other_user.id)
 
     messages = chat.messages.order_by("timestamp")
-    is_blocked = Block.objects.filter(
-    blocker=request.user,
-    blocked=other_user).exists()
-    
     return render(
     request,
     "chat.html",
     {
         "other_user": other_user,
         "messages": messages,
-        "is_blocked": is_blocked,
+        "is_blocked": blocked,
+        "is_blocker": is_blocker,   # ✅ NEW
     }
 )
+
 
 
 
