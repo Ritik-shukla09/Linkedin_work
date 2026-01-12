@@ -4,7 +4,7 @@ from django.urls import path, include
 from Accounts.views import home
 
 urlpatterns = [
-    path("", home, name="home"),  # 👈 THIS FIXES /
+    path("", home, name="home"),  
     path("admin/", admin.site.urls),
     path("accounts/", include("Accounts.urls")),
     path("posts/", include("Posts.urls")),

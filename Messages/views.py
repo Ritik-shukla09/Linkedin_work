@@ -39,22 +39,21 @@ def chat_view(request, user_id):
         chat = Chat.objects.create()
         chat.participants.add(request.user, other_user)
 
-    # 🔒 BLOCK CHECK (BOTH SIDES)
-   # 🔒 BLOCK CHECK
+    # BLOCK CHECK (BOTH SIDES)
     blocked = Block.objects.filter(
         blocker=request.user, blocked=other_user
     ).exists() or Block.objects.filter(
         blocker=other_user, blocked=request.user
     ).exists()
 
-    # 👤 AM I THE ONE WHO BLOCKED?
+    
     is_blocker = Block.objects.filter(
         blocker=request.user, blocked=other_user
     ).exists()
 
     
 
-    # ❌ BLOCK MESSAGE SENDING (BACKEND)
+    #  BLOCK MESSAGE SENDING (BACKEND)
     if request.method == "POST":
         if blocked:
             return redirect("chat", user_id=other_user.id)
@@ -76,7 +75,7 @@ def chat_view(request, user_id):
         "other_user": other_user,
         "messages": messages,
         "is_blocked": blocked,
-        "is_blocker": is_blocker,   # ✅ NEW
+        "is_blocker": is_blocker,   
     }
 )
 

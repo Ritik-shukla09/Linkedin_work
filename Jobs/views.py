@@ -6,9 +6,8 @@ from .models import Job, JobApplication
 from .decorators import recruiter_required, applicant_required
 
 
-# ===============================
-# JOB LIST (already correct)
-# ===============================
+
+# JOB LIST 
 from django.contrib.auth.decorators import login_required
 
 from django.views.decorators.cache import never_cache
@@ -30,9 +29,9 @@ def job_list(request):
         "applied_jobs": applied_jobs
     })
 
-# ===============================
+
 # JOB APPLICANTS (Recruiter only)
-# ===============================
+
 
 @never_cache
 @login_required
@@ -53,9 +52,9 @@ def job_applicants(request, job_id):
         "applications": applications
     })
 
-# ===============================
+
 # JOB DETAIL PAGE
-# ===============================
+
 
 @never_cache
 @login_required
@@ -76,9 +75,9 @@ def job_detail(request, job_id):
 
 
 
-# ===============================
+
 # CREATE JOB (Recruiter only)
-# ===============================
+
 
 @never_cache
 @login_required
@@ -97,9 +96,9 @@ def create_job(request):
     return render(request, "Jobs/create_job.html")
 
 
-# ===============================
+
 # APPLY JOB (Applicant only)
-# ===============================
+
 
 @never_cache
 @login_required
@@ -127,9 +126,8 @@ def apply_job(request, job_id):
     return render(request, "Jobs/apply_job.html", {"job": job})
 
 
-# ===============================
+
 # RECRUITER DASHBOARD
-# ==============================
 
 
 @never_cache

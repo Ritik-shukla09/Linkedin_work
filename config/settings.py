@@ -22,7 +22,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-a*y#mlr304@y*tl52e3*=%5l*lafojo*wwa8uf*_4&&xh(^y@&'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = True    
 
 ALLOWED_HOSTS = []
 
@@ -36,9 +36,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'Accounts.apps.AccountsConfig',  # 👈 EXACT
-    'Posts.apps.PostsConfig',  # 👈 EXACT
-    'Connections.apps.ConnectionsConfig',  # 👈 EXACT
+    'Accounts.apps.AccountsConfig', 
+    'Posts.apps.PostsConfig',  
+    'Connections.apps.ConnectionsConfig', 
     'Jobs.apps.JobsConfig',
     "Messages.apps.MessagesConfig",
 ]
@@ -61,7 +61,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'config.middleware.DisableCacheMiddleware',  # 👈 ADD THIS
+    'config.middleware.DisableCacheMiddleware', 
 ]
 
 
@@ -72,7 +72,7 @@ TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
 
-        'DIRS': [BASE_DIR / 'templates'],  # 👈 REQUIRED
+        'DIRS': [BASE_DIR / 'templates'],  
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -85,7 +85,7 @@ TEMPLATES = [
 ]
 
 STATICFILES_DIRS = [
-    BASE_DIR / 'static',   # 👈 global static
+    BASE_DIR / 'static',   # global static
 ]
 
 WSGI_APPLICATION = 'config.wsgi.application'
@@ -125,4 +125,4 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/6.0/howto/static-files/
 
-STATIC_URL = 'static/'
+

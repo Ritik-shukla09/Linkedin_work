@@ -3,7 +3,6 @@ from django.db import models
 
 User = settings.AUTH_USER_MODEL
 
-
 class Post(models.Model):
     author = models.ForeignKey(
         User,
@@ -66,7 +65,7 @@ class Comment(models.Model):
 
     text = models.TextField()
 
-    # 🔥 This enables nested comments / replies
+    # nested comments / replies
     parent = models.ForeignKey(
         "self",
         null=True,

@@ -79,11 +79,6 @@ body.dark-mode .profile-header {
 .edit-btn:hover {
   background: #e7f3ff;
 }
-
-/* =========================
-   PROFILE CARDS
-   ========================= */
-
 .card {
   background: #ffffff;
   border-radius: 1rem;
@@ -113,9 +108,6 @@ body.dark-mode .card {
   font-size: 0.95rem;
 }
 
-/* =========================
-   STATS + ACTION BUTTONS
-   ========================= */
 
 .profile-action-buttons {
   display: flex;
@@ -163,9 +155,6 @@ body.dark-mode .profile-btn.outline {
   color: #9dc3ff;
 }
 
-/* =========================
-   SKILLS
-   ========================= */
 
 .skills-list {
   display: flex;
@@ -188,9 +177,6 @@ body.dark-mode .skill-pill {
   color: #9dc3ff;
 }
 
-/* =========================
-   MOBILE
-   ========================= */
 
 @media (max-width: 48rem) {
   .profile-container {
@@ -208,7 +194,7 @@ body.dark-mode .skill-pill {
   }
 }
 
-/* ================= PROFILE POSTS ================= */
+/*PROFILE POSTS */
 
 .profile-posts {
   display: flex;
@@ -255,10 +241,8 @@ body.dark-mode .profile-post {
 
 
 
-
-/* =============================== */
-/* 🔍 SEARCH RESULTS PAGE         */
-/* =============================== */
+/*      */
+*/
 
 .search-container {
   max-width: 800px;
@@ -337,9 +321,6 @@ body.dark-mode .profile-post {
   background: #004182;
 }
 
-/* =============================== */
-/* 🌙 DARK MODE                   */
-/* =============================== */
 
 body.dark-mode .search-card {
   background-color: #1e1e1e;
@@ -352,13 +333,10 @@ body.dark-mode .search-info p {
 body.dark-mode .search-btn {
   background: #2563eb;
 }
-/* =============================== */
-/* 📦 POST CARD — WIDER (NO PX)    */
-/* =============================== */
 
 .post-card {
   width: 90%;
-  max-width: 48rem;     /* scales with font-size, NOT px */
+  max-width: 48rem;     /* */
   margin: 0 auto 1.5rem;
 }
 

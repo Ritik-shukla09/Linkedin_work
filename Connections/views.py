@@ -83,7 +83,7 @@ def send_connection_request(request):
     if existing and existing.status == "pending":
         return JsonResponse({"status": "already_sent"})
 
-    # Rejected earlier → allow resend
+    # Rejected earlier 
     if existing and existing.status == "rejected":
         existing.status = "pending"
         existing.save()

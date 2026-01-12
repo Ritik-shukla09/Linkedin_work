@@ -13,11 +13,6 @@ class RegisterForm(UserCreationForm):
             field.widget.attrs.update({
                 'class': 'form-control'
             })
-from django import forms
-from .models import Profile
-
-from django import forms
-from .models import Profile
 
 class ProfileForm(forms.ModelForm):
     class Meta:
@@ -29,7 +24,7 @@ class ProfileForm(forms.ModelForm):
             "location",
             "company",
             "college",
-            "skills",   # ✅ ADD THIS
+            "skills",   
         ]
 
         widgets = {
@@ -49,7 +44,7 @@ class ProfileForm(forms.ModelForm):
             "college": forms.TextInput(attrs={
                 "placeholder": "College / University"
             }),
-            "skills": forms.TextInput(attrs={   # ✅ ADD THIS
+            "skills": forms.TextInput(attrs={   
                 "placeholder": "Python, Django, React, SQL"
             }),
         }
@@ -59,3 +54,44 @@ class ProfileForm(forms.ModelForm):
             field.widget.attrs.update({
                 'class': 'form-control'
             })
+
+
+from .models import Experience, Project
+
+
+class ExperienceForm(forms.ModelForm):
+    class Meta:
+        model = Experience
+        fields = ["company", "role", "start_date", "end_date", "description"]
+        widgets = {
+            "start_date": forms.DateInput(attrs={"type": "date"}),
+            "end_date": forms.DateInput(attrs={"type": "date"}),
+            "description": forms.Textarea(attrs={"rows": 3}),
+        }
+
+
+class ProjectForm(forms.ModelForm):
+    class Meta:
+        model = Project
+        fields = ["title", "description", "tech_stack", "project_link"]
+        widgets = {
+            "description": forms.Textarea(attrs={"rows": 3}),
+        }
+
+
+from .models import Education
+
+class EducationForm(forms.ModelForm):
+    class Meta:
+        model = Education
+        fields = [
+            "institution",
+            "degree",
+            "field_of_study",
+            "start_year",
+            "end_year",
+            "description",
+        ]
+        widgets = {
+            "description": forms.Textarea(attrs={"rows": 3}),
+        }

@@ -1,12 +1,9 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse
-from django.db.models import Q
-from django.shortcuts import render, get_object_or_404
 from django.contrib.auth import get_user_model
 
 User = get_user_model()
-from django.db.models import Q
 
 from Connections.models import Follow, ConnectionRequest
 
@@ -14,9 +11,9 @@ from .models import Post, Like, Comment
 from .forms import PostForm
 
 
-# =====================================================
-# FEED VIEW (shows only 1–2 top-level comments)
-# =====================================================
+
+# FEED VIEW 
+
 from django.views.decorators.cache import never_cache
 from Posts.models import News
 
@@ -42,13 +39,11 @@ def feed_view(request):
     followers_count = user.followers.count()
     following_count = user.following.count()
 
-
-    # ✅ GET NEWS (NO FILTERING)
     news = News.objects.all()[:5]
 
     return render(request, "Posts/feed_layout.html", {
         "posts": posts,
-        "news": news,                # 👈 REQUIRED
+        "news": news,                
         "show_comment_actions": False,
         "followers_count": followers_count,
         "connections_count": connections_count,
@@ -57,9 +52,9 @@ def feed_view(request):
 
 
 
-# =====================================================
+
 # CREATE POST
-# =====================================================
+
 @login_required
 def create_post_view(request):
     if request.method == "POST":
@@ -74,10 +69,8 @@ def create_post_view(request):
 
     return render(request, "Posts/create_post.html", {"form": form})
 
+# LIKE / UNLIKE 
 
-# =====================================================
-# LIKE ↔ UNLIKE (TOGGLE, DOUBLE-CLICK FRIENDLY)
-# =====================================================
 @login_required
 def toggle_like(request, post_id):
     post = get_object_or_404(Post, id=post_id)
@@ -100,9 +93,9 @@ def toggle_like(request, post_id):
     })
 
 
-# =====================================================
+
 # ADD COMMENT / REPLY
-# =====================================================
+
 @login_required
 def add_comment(request, post_id):
     if request.method == "POST":
@@ -121,9 +114,9 @@ def add_comment(request, post_id):
     return redirect("feed")
 
 
-# =====================================================
+
 # VIEW ALL COMMENTS (FULL THREAD)
-# =====================================================
+
 @login_required
 def view_all_comments(request, post_id):
     post = get_object_or_404(Post, id=post_id)
@@ -138,14 +131,14 @@ def view_all_comments(request, post_id):
     return render(request, "Posts/all_comments.html", {
     "post": post,
     "comments": comments,
-    "show_comment_actions": True,  # 👈 FULL COMMENTS PAGE
+    "show_comment_actions": True,  # FULL COMMENTS PAGE
 })
 
 
 
-# =====================================================
-# DELETE COMMENT (ONLY COMMENT OWNER)
-# =====================================================
+
+# DELETE COMMENT 
+
 @login_required
 def delete_comment(request, comment_id):
     comment = get_object_or_404(Comment, id=comment_id)
@@ -157,9 +150,9 @@ def delete_comment(request, comment_id):
     return JsonResponse({"success": True})
 
 
-# =====================================================
+
 # DELETE POST (ONLY POST AUTHOR)
-# =====================================================
+
 @login_required
 def delete_post_ajax(request, post_id):
     if request.method == "POST":
