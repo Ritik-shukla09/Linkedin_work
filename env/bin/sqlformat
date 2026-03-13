@@ -1,4 +1,4 @@
-#!/home/ritik-shukla/Documents/Linkedin/env/bin/python3
+#!/home/ritik-shukla/Documents/PYTHON/Linkedin/env/bin/python
 # -*- coding: utf-8 -*-
 import re
 import sys
