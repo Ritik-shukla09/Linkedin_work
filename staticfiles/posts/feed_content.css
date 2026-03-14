@@ -1,0 +1,336 @@
+
+
+/* ================= FEED ================= */
+.feed {
+  width: 100%;
+  max-width: 100%;
+  margin: 0 auto;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+
+  /* 🔑 IMPORTANT: keeps content inside center column */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* ================= ANIMATION ================= */
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* =============================== */
+/* 📦 POST CARD — WIDER (SAFE)     */
+/* =============================== */
+.post-card {
+  background: #ffffff;
+  max-width: 52rem;  
+  /* wider posts * */
+  width: 100%;
+
+  margin-left: auto;
+  margin-right: auto;
+  /* 🔑 KEY FIX */
+  width: min(45rem, 100%);
+
+  padding: 1.3rem 1.5rem;
+  border-radius: 16px;
+  margin-bottom: 1.8rem;
+
+  box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+  animation: fadeUp 0.35s ease both;
+}
+
+/* ================= MEDIA ================= */
+.post-media {
+  width: 100%;
+  height: auto;
+  max-height: 440px;
+  object-fit: cover;
+  border-radius: 14px;
+  margin-top: 0.6rem;
+}
+
+/* ================= HEADER ================= */
+.post-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.post-header strong {
+  color: #0a66c2;
+  font-size: 1rem;
+}
+
+.post-header small {
+  font-size: 0.8rem;
+  color: #6b7280;
+}
+
+/* ================= CONTENT ================= */
+.post-text {
+  margin: 0.8rem 0;
+  line-height: 1.65;
+  color: #1f2937;
+}
+
+/* ================= ACTIONS ================= */
+.post-actions {
+  display: flex;
+  gap: 1.8rem;
+  margin-top: 0.9rem;
+  padding-top: 0.6rem;
+  border-top: 1px solid #e5e7eb;
+  font-size: 0.9rem;
+}
+
+.like-btn {
+  cursor: pointer;
+}
+
+.like-btn:hover {
+  color: crimson;
+}
+
+.like-btn span {
+  transition: transform 0.15s ease;
+}
+
+.like-btn:hover span {
+  transform: scale(1.2);
+}
+
+/* ================= COMMENTS ================= */
+
+
+.comments {
+  margin-top: 0.8rem;
+}
+
+.comment {
+  background: #f5f7fa;
+  padding: 0.55rem 0.7rem;
+  border-radius: 12px;
+  margin-top: 0.5rem;
+  animation: fadeUp 0.3s ease both;
+}
+
+.comment-text {
+  font-size: 0.88rem;
+  line-height: 1.4;
+}
+
+.comment-text strong {
+  color: #0a66c2;
+  margin-right: 0.3rem;
+}
+
+/* ================= COMMENT META ================= */
+.comment-meta {
+  font-size: 0.75rem;
+  color: #6b7280;
+  display: flex;
+  gap: 1rem;
+  margin-top: 0.25rem;
+}
+
+.comment-meta a {
+  color: #0a66c2;
+  text-decoration: none;
+}
+
+.comment-meta a:hover {
+  text-decoration: underline;
+}
+
+/* ================= REPLIES ================= */
+/* ================= REPLY BOX (POST-LIKE) ================= */
+.reply-form {
+  margin-top: 0.6rem;
+  background: #ffffff;
+  padding: 0.75rem 0.9rem;
+  border-radius: 14px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+  display: flex;
+  gap: 0.6rem;
+  align-items: center;
+  animation: fadeUp 0.25s ease both;
+}
+
+/* input like post composer */
+.reply-form input {
+  flex: 1;
+  border: none;
+  outline: none;
+  font-size: 0.85rem;
+  padding: 0.5rem 0.6rem;
+  background: #f3f4f6;
+  border-radius: 999px;
+}
+
+/* focus effect */
+.reply-form input:focus {
+  background: #ffffff;
+  box-shadow: inset 0 0 0 1px #0a66c2;
+}
+
+/* reply button */
+.reply-form button {
+  background: #0a66c2;
+  color: #ffffff;
+  border: none;
+  padding: 0.45rem 0.9rem;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.reply-form button:hover {
+  background: #084e96;
+}
+ 
+
+/* ================= DARK MODE REPLY BOX ================= */
+body.dark-mode .reply-form {
+  background: #242526;
+  box-shadow: none;
+}
+
+body.dark-mode .reply-form input {
+  background: #3a3b3c;
+  color: #e4e6eb;
+}
+
+body.dark-mode .reply-form input:focus {
+  box-shadow: inset 0 0 0 1px #70b5f9;
+}
+
+
+/* ================= ADD COMMENT ================= */
+.comment-form {
+  display: flex;
+  gap: 0.6rem;
+  margin-top: 0.8rem;
+}
+
+.comment-form input {
+  flex: 1;
+  padding: 0.5rem 0.8rem;
+  border-radius: 999px;
+  border: 1px solid #d1d5db;
+}
+
+.comment-form button {
+  background: #0a66c2;
+  color: white;
+  border: none;
+  padding: 0.45rem 1rem;
+  border-radius: 999px;
+  cursor: pointer;
+}
+
+/* ================= LINKS ================= */
+.view-all {
+  display: inline-block;
+  margin-top: 0.4rem;
+  font-size: 0.8rem;
+  color: #0a66c2;
+  text-decoration: none;
+}
+
+.view-all:hover {
+  text-decoration: underline;
+}
+
+/* ================= UTIL ================= */
+.hidden {
+  display: none;
+}
+
+/* ================= DARK MODE ================= */
+body.dark-mode .post-card {
+  background: #1e1e1e;
+  color: #e4e6eb;
+  box-shadow: none;
+}
+
+body.dark-mode .comment {
+  background: #242526;
+}
+
+body.dark-mode .comment-form input {
+  background: #3a3b3c;
+  color: #e4e6eb;
+  border: none;
+}
+
+/* ================= CREATE POST ================= */
+.create-post-card {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.create-post-link {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  text-decoration: none;
+}
+
+.create-post-placeholder {
+  color: #6b7280;
+  font-size: 0.9rem;
+}
+
+.create-post-card:hover {
+  background: #f5f7fa;
+}
+
+/* ================= POST BUTTON ================= */
+.post-btn {
+  background: linear-gradient(135deg, #0a66c2, #084e96);
+  color: #ffffff;
+  border: none;
+  padding: 0.55rem 1.4rem;
+  border-radius: 999px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 6px 14px rgba(10,102,194,0.35);
+  transition: all 0.2s ease;
+}
+
+.post-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 10px 22px rgba(10,102,194,0.45);
+}
+
+/* ================= DELETE POST ================= */
+.delete-post {
+  background: transparent;
+  border: none;
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #6b7280;
+  cursor: pointer;
+}
+
+.delete-post:hover {
+  color: #dc2626;
+}
+
+
+body.dark-mode .create-post-card:hover {
+  background: #242526;
+}

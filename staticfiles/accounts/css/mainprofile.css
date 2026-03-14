@@ -1,0 +1,365 @@
+/* Page layout */
+.linkedin-layout {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 1.8rem;
+}
+
+/* Ultra wide card */
+.ultra-wide-card {
+  width: 100%;
+  max-width: 45rem;
+  margin: 0 auto;
+  background: #fff;
+  border-radius: 0.875rem;
+  padding: 1.8rem 2.4rem;
+  box-shadow: 0 0.125rem 0.5rem rgba(0,0,0,0.06);
+}
+
+/* Extra wide screens */
+@media (min-width: 100rem) {
+  .ultra-wide-card {
+    max-width: 87.5rem;
+  }
+}
+
+/* Profile header layout */
+.profile-header-row {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 2rem;
+  align-items: center;
+}
+
+/* Profile avatar */
+.profile-avatar {
+  width: 15rem;
+  height: 15rem;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 0.35rem solid coral;
+}
+
+/* Center profile text */
+.profile-center h1 {
+  margin: 0;
+  font-size: 1.8rem;
+}
+
+.profile-center h3 {
+  margin: 0.3rem 0;
+  font-weight: 500;
+  color: #444;
+}
+
+.profile-center .location {
+  color: #666;
+  margin-bottom: 0.8rem;
+}
+
+/* Edit profile button */
+.edit-btn {
+  display: inline-block;
+  margin-top: 0.6rem;
+  padding: 0.45rem 1.2rem;
+  border-radius: 999rem;
+  background: #0a66c2;
+  color: #fff;
+  font-weight: 600;
+  text-decoration: none;
+  font-size: 0.9rem;
+}
+
+.edit-btn:hover {
+  background: #004182;
+}
+
+/* Followers and connections */
+.profile-right {
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+  align-items: flex-end;
+}
+
+.profile-btn {
+  background: #eef3f8;
+  color: #0a66c2;
+  padding: 0.6rem 1.2rem;
+  border-radius: 999rem;
+  font-weight: 600;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  font-size: 0.95rem;
+}
+
+.profile-btn span {
+  background: #0a66c2;
+  color: #fff;
+  padding: 0.15rem 0.6rem;
+  border-radius: 999rem;
+  margin-left: 0.5rem;
+  font-size: 0.8rem;
+}
+
+/* Delete section inside header card */
+.delete-row {
+  margin-top: 1.5rem;
+  border-top: 0.0625rem solid #eee;
+  padding-top: 1rem;
+  text-align: right;
+}
+
+/* Delete button */
+.delete-btn {
+  background: #ffe5e5;
+  color: #b00020;
+  border: 0.0625rem solid #f5b5b5;
+  padding: 0.5rem 1.2rem;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.delete-btn:hover {
+  background: #ffd6d6;
+}
+
+/* Card section headers */
+.ultra-wide-card h2 {
+  font-size: 1.4rem;
+  font-weight: 600;
+}
+
+/* Section header row */
+.section-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.2rem;
+}
+
+/* Inline add button */
+.add-inline-btn {
+  background: #0a66c2;
+  color: #fff;
+  padding: 0.45rem 1.1rem;
+  border-radius: 999rem;
+  font-size: 0.95rem;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.add-inline-btn:hover {
+  background: #004182;
+}
+
+/* Experience and project items */
+.item-row {
+  padding: 1.2rem 0;
+  border-bottom: 0.0625rem solid #eee;
+}
+
+.item-row:last-child {
+  border-bottom: none;
+}
+
+/* Description text */
+.desc {
+  margin-top: 0.4rem;
+  line-height: 1.6;
+}
+
+/* Muted text */
+.muted {
+  color: #666;
+}
+
+/* Edit link */
+.edit-link {
+  display: inline-block;
+  margin-top: 0.5rem;
+  font-size: 0.9rem;
+  color: #0a66c2;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+/* Skills list */
+.skills-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+}
+
+/* Skill pill */
+.skill-pill {
+  background: #eef3f8;
+  color: #0a66c2;
+  padding: 0.45rem 1rem;
+  border-radius: 999rem;
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+/* Project view button */
+.project-link-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-top: 0.6rem;
+  padding: 0.45rem 1.1rem;
+  background: #0a66c2;
+  color: #fff;
+  border-radius: 999rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background 0.2s ease, transform 0.15s ease;
+}
+
+.project-link-btn:hover {
+  background: #004182;
+  transform: translateY(-1px);
+}
+
+.project-link-btn::after {
+  content: "↗";
+  font-size: 0.85rem;
+}
+
+/* Form page layout */
+.form-page {
+  min-height: 70vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Form wrapper */
+.form-wrapper {
+  max-width: 50rem;
+}
+
+/* Form header */
+.form-header {
+  margin-bottom: 1.5rem;
+}
+
+.form-header h2 {
+  margin: 0;
+  font-size: 1.6rem;
+}
+
+/* Form subtitle */
+.form-subtitle {
+  margin-top: 0.4rem;
+  color: #666;
+  font-size: 0.95rem;
+}
+
+/* Styled form layout */
+.styled-form p {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1.1rem;
+}
+
+/* Form labels */
+.styled-form label {
+  font-weight: 600;
+  margin-bottom: 0.3rem;
+}
+
+/* Form inputs */
+.styled-form input,
+.styled-form textarea,
+.styled-form select {
+  padding: 0.6rem 0.7rem;
+  border-radius: 0.4rem;
+  border: 0.0625rem solid #ccc;
+  font-size: 0.95rem;
+}
+
+/* Focus state */
+.styled-form input:focus,
+.styled-form textarea:focus,
+.styled-form select:focus {
+  outline: none;
+  border-color: #0a66c2;
+  box-shadow: 0 0 0 0.125rem rgba(10,102,194,0.15);
+}
+
+/* Form actions */
+.form-actions {
+  margin-top: 1.5rem;
+  display: flex;
+  gap: 1rem;
+}
+
+/* Save button */
+.btn-save {
+  background: #0a66c2;
+  color: #fff;
+  border: none;
+  padding: 0.6rem 1.6rem;
+  border-radius: 999rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.btn-save:hover {
+  background: #004182;
+}
+
+/* Cancel button */
+.btn-cancel {
+  background: #f1f1f1;
+  color: #333;
+  padding: 0.6rem 1.6rem;
+  border-radius: 999rem;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.btn-cancel:hover {
+  background: #e1e1e1;
+}
+
+/* Inline delete form */
+.inline-delete-form {
+  display: inline;
+  margin-left: 0.8rem;
+}
+
+/* Delete link button */
+.delete-link-btn {
+  background: none;
+  border: none;
+  color: #b00020;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 0;
+  font-size: 0.9rem;
+}
+
+.delete-link-btn:hover {
+  text-decoration: underline;
+}
+
+/* Form delete button */
+.btn-delete {
+  background: #ffe5e5;
+  color: #b00020;
+  border: 0.0625rem solid #f5b5b5;
+  padding: 0.6rem 1.4rem;
+  border-radius: 999rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.btn-delete:hover {
+  background: #ffd6d6;
+}
